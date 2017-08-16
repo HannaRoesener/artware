@@ -8,6 +8,7 @@ class MyWin(QWidget):
         super(MyWin,self).__init__()
 
         self.initGUI()
+        self.searchlabels() = []
 
 
     def initGUI(self):
@@ -22,12 +23,8 @@ class MyWin(QWidget):
         # QShortcut.setKey(self.enterEvent).connect(self.newQLabel)
 
 
-        # position QLabels
-        self.copy0.move(0, 0)
-        self.copy1.move(0, 30)
-        # etc.
 
-        # Layout 
+        # Layout
         layout = QVBoxLayout()
         layout.addWidget(self.search)
         buttonLayout = QHBoxLayout()
@@ -39,16 +36,11 @@ class MyWin(QWidget):
 
 
     def newQLabel(self):
-        # self.search.displayText()
-        searchterms = []
-        searchterms.append(self.search.text())
-        print searchterms
+        newlabel = QLabel(self.search.text(), self)
+        newlabel.move(40, 30)
+        self.searchlabels.append(newlabel)
+        newlabel.show()
         self.search.clear()
-
-        # self.LabelList = QListWidget(self)
-        # item = QLabel(self)
-        # self.LabelList.addItem(self, item)
-        # self.LabelList.show()
 
 
         # Window Basics
@@ -57,11 +49,6 @@ class MyWin(QWidget):
         self.setWindowTitle('Google Search')
         self.show()
 
-    #
-    # def onChanged(self, text):
-    #
-    #     self.copy0.setText(text)
-    #     self.copy0.adjustSize()
 
 
 if __name__ == '__main__':

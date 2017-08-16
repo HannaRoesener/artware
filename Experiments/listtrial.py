@@ -25,7 +25,7 @@ class Window(QWidget):
 
 
     def add_keyword(self):
-        list1 = []
+    
         for i in range(10):
             list1.append('search'(i + 1))
             return self.list1.text()
