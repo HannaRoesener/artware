@@ -1,7 +1,11 @@
+# References:
+# Google Logo - https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.sv
+# Google Icon - https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg
+###############################################################################
 import sys
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QApplication, QPushButton, QHBoxLayout, QVBoxLayout, QShortcut, QGraphicsDropShadowEffect, QMessageBox
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon, QPixmap, QPalette, QFont
+from PyQt5.QtGui import QIcon, QPixmap, QPalette, QFont, QIcon
 from random import randint
 
 class MyWin(QWidget):
@@ -13,7 +17,8 @@ class MyWin(QWidget):
         self.initGUI()
         self.searchterms = []
         self.setWindowTitle('Google')
-        self.setGeometry(50,50, self.width, self.height)
+        self.setWindowIcon(QIcon('googleicon.png'))
+        self.setGeometry(40,40, self.width, self.height)
         self.setFixedWidth(950)
         self.setFixedHeight(550)
         self.show()
@@ -76,7 +81,7 @@ class MyWin(QWidget):
 
         self.search.setStyleSheet("""
             QLineEdit {
-            border: .5px l#C9C9C9;
+            border: 1px solid #C9C9C9;
             padding: 12px;
             font-size: 15px;
             }
@@ -109,12 +114,12 @@ class MyWin(QWidget):
         newlabel = QLabel(self.search.text(), self)
         newlabel.move(randint(30,920), randint(30,520))
         self.searchterms.append(newlabel)
-        newlabel.setMaximumWidth(100) # does not work the way I want it to
-        newlabelstyle = """
+        newlabel.setMaximumWidth(100) # I could not get this to work... Some Queries get cut off.
+        newlabel.setStyleSheet ("""
             QLabel {
                 font-size: 15px;
             }
-            """
+            """)
         newlabel.show()
         self.search.clear()
 
@@ -125,7 +130,7 @@ class MyWin(QWidget):
             self.newQLabel()
 
     def sorry(self):
-        QMessageBox.about(self, "Sorry!", "We currently cannot provide that service. \nSorry!")
+        QMessageBox.about(self, "Sorry!", "Service currently not available. \nWe are working hard on getting it fixed. \nSorry for any inconvenience.")
 
 
 if __name__ == '__main__':
